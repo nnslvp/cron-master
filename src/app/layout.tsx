@@ -3,7 +3,6 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cron-master.ru'),
   title: {
     default: 'Крон Мастер: Удобный онлайн генератор Cron-заданий',
     template: '%s | Крон Мастер',
