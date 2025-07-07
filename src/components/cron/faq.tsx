@@ -12,7 +12,7 @@ const faqs = [
     question: "Как читать cron-строку?",
     answer: `
       <p>Cron-строка состоит из пяти полей, определяющих время выполнения, за которыми следует команда. Каждое поле разделено пробелом:</p>
-      <pre class="bg-secondary p-3 rounded-md my-2 font-mono text-sm">* * * * * command_to_execute
+      <pre class="bg-secondary text-secondary-foreground p-3 rounded-md my-2 font-mono text-sm">* * * * * command_to_execute
 ┬ ┬ ┬ ┬ ┬
 │ │ │ │ │
 │ │ │ │ │
