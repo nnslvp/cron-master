@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
 import { Button } from "../ui/button";
@@ -65,7 +65,7 @@ export default function Examples() {
   };
 
   return (
-    <div className="space-y-6">
+    <section className="space-y-6">
       <div className="text-center">
         <h2 className="font-headline text-3xl font-bold">Примеры Cron-заданий</h2>
         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
@@ -74,29 +74,31 @@ export default function Examples() {
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {examples.map((example, index) => (
-          <Card key={index} className="flex flex-col">
-            <CardHeader>
-              <CardTitle className="font-headline">{example.title}</CardTitle>
-              <CardDescription>{example.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-end">
-              <div className="relative">
-                <code className="block bg-secondary p-3 rounded-md text-sm font-mono break-all">
-                  {example.cron} {example.command}
-                </code>
-                 <Button
-                    size="icon"
-                    variant="ghost"
-                    className="absolute top-2 right-2 h-7 w-7"
-                    onClick={() => handleCopy(`${example.cron} ${example.command}`)}
-                  >
-                    <Copy className="h-4 w-4" />
-                  </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <article key={index}>
+            <Card className="flex flex-col h-full">
+              <CardHeader>
+                <h3 className="font-headline text-2xl font-semibold leading-none tracking-tight">{example.title}</h3>
+                <CardDescription>{example.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow flex flex-col justify-end">
+                <div className="relative">
+                  <code className="block bg-secondary p-3 rounded-md text-sm font-mono break-all">
+                    {example.cron} {example.command}
+                  </code>
+                  <Button
+                      size="icon"
+                      variant="ghost"
+                      className="absolute top-2 right-2 h-7 w-7"
+                      onClick={() => handleCopy(`${example.cron} ${example.command}`)}
+                    >
+                      <Copy className="h-4 w-4" />
+                    </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

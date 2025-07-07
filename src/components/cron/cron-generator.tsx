@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,7 +67,7 @@ const TimeUnitEditor = ({ unitKey, value, onChange }: { unitKey: TimeUnit, value
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-headline text-lg">{unit.label}</CardTitle>
+        <h3 className="font-headline text-lg font-semibold leading-none tracking-tight">{unit.label}</h3>
       </CardHeader>
       <CardContent>
         <RadioGroup value={mode} onValueChange={setMode} className="mb-4">
@@ -133,7 +133,7 @@ export default function CronGenerator() {
     <div className="space-y-8">
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline text-xl">Пресеты</CardTitle>
+          <h2 className="font-headline text-xl font-semibold leading-none tracking-tight">Пресеты</h2>
           <CardDescription>Начните с готового шаблона</CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -160,7 +160,7 @@ export default function CronGenerator() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline text-xl">Команда</CardTitle>
+          <h2 className="font-headline text-xl font-semibold leading-none tracking-tight">Команда</h2>
           <CardDescription>Укажите команду для выполнения</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -177,7 +177,7 @@ export default function CronGenerator() {
 
       <Card>
         <CardHeader>
-            <CardTitle className="font-headline text-xl">Дополнительно</CardTitle>
+            <h2 className="font-headline text-xl font-semibold leading-none tracking-tight">Дополнительно</h2>
         </CardHeader>
         <CardContent className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -193,7 +193,7 @@ export default function CronGenerator() {
 
       <Card className="sticky bottom-4 shadow-2xl border-primary/50">
         <CardHeader>
-          <CardTitle className="font-headline text-xl">Результат</CardTitle>
+          <h2 className="font-headline text-xl font-semibold leading-none tracking-tight">Результат</h2>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>

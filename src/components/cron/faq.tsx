@@ -1,7 +1,7 @@
 "use client";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 const faqs = [
   {
@@ -55,27 +55,29 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <div className="space-y-6">
+    <section className="space-y-6">
       <div className="text-center">
         <h2 className="font-headline text-3xl font-bold">Часто задаваемые вопросы</h2>
         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
           Все, что вы хотели знать о cron, но боялись спросить.
         </p>
       </div>
-      <Card className="max-w-4xl mx-auto">
+      <Card className="max-w-4xl mx-auto" itemScope itemType="https://schema.org/FAQPage">
         <CardContent className="p-4 sm:p-6">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-headline text-lg">{faq.question}</AccordionTrigger>
-                <AccordionContent>
-                  <div className="prose prose-sm dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: faq.answer }} />
+              <AccordionItem key={index} value={`item-${index}`} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <AccordionTrigger className="text-left font-headline text-lg">
+                  <span itemProp="name">{faq.question}</span>
+                </AccordionTrigger>
+                <AccordionContent itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <div itemProp="text" className="prose prose-sm dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: faq.answer }} />
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </CardContent>
       </Card>
-    </div>
+    </section>
   );
 }
