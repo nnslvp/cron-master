@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Крон Мастер',
     images: [
       {
-        url: 'https://placehold.co/1200x630.png',
+        url: '/safari-pinned-tab.svg',
         width: 1200,
         height: 630,
         alt: 'Онлайн генератор Cron-заданий',
@@ -38,9 +38,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
-        { url: '/favicon.ico', sizes: 'any' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: '/safari-pinned-tab.svg',
   },
   themeColor: '#F0F0F5',
 };
