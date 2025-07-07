@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cron.nnslvp.io'),
   title: {
     default: 'Крон Мастер: Удобный онлайн генератор Cron-заданий',
     template: '%s | Крон Мастер',
@@ -16,17 +17,17 @@ export const metadata: Metadata = {
   },
     
   alternates: {
-    canonical: '/',
+    canonical: 'https://cron.nnslvp.io',
   },
   
   openGraph: {
     title: 'Крон Мастер: Удобный онлайн генератор Cron-заданий',
     description: 'Простой и удобный генератор для создания и настройки cron-заданий.',
-    url: '/',
+    url: 'https://cron.nnslvp.io',
     siteName: 'Крон Мастер',
     images: [
       {
-        url: '/safari-pinned-tab.svg',
+        url: '/icon.svg',
         width: 1200,
         height: 630,
         alt: 'Онлайн генератор Cron-заданий',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: '/safari-pinned-tab.svg',
+    apple: '/icon.svg',
   },
   themeColor: '#F0F0F5',
 };
