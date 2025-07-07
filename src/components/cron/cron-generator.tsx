@@ -1,6 +1,5 @@
 "use client";
 
-import { analyzeCommand, type AnalyzeCommandOutput } from "@/ai/flows/command-analyzer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { generateCronDescription, generateCronString, generateSystemdTimer, type CronState } from "@/lib/cron-utils";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { ArrowRight, BadgeCheck, BadgeAlert, BrainCircuit, ChevronDown, Copy, Database, Loader2, Package, ShieldCheck, Trash2 } from "lucide-react";
+import { ChevronDown, Copy, Database, Package, ShieldCheck, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
@@ -112,8 +111,6 @@ export default function CronGenerator() {
   const [cron, setCron] = useState<CronState>({ minute: "*", hour: "*", dayOfMonth: "*", month: "*", dayOfWeek: "*", command: "" });
   const [useLogging, setUseLogging] = useState(false);
   const [showSystemd, setShowSystemd] = useState(false);
-  const [analysis, setAnalysis] = useState<AnalyzeCommandOutput | null>(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const cronString = useMemo(() => generateCronString(cron, useLogging), [cron, useLogging]);
   const cronDescription = useMemo(() => generateCronDescription(cron), [cron]);
@@ -125,30 +122,11 @@ export default function CronGenerator() {
 
   const handlePreset = (presetCron: CronState) => {
     setCron(presetCron);
-    setAnalysis(null);
   };
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({ title: "Скопировано!", description: "Текст скопирован в буфер обмена." });
-  };
-
-  const handleAnalyze = async () => {
-    if (!cron.command) {
-      toast({ variant: "destructive", title: "Ошибка", description: "Поле команды не может быть пустым." });
-      return;
-    }
-    setIsAnalyzing(true);
-    setAnalysis(null);
-    try {
-      const result = await analyzeCommand({ command: cron.command });
-      setAnalysis(result);
-    } catch (error) {
-      console.error("Analysis failed:", error);
-      toast({ variant: "destructive", title: "Ошибка анализа", description: "Не удалось проанализировать команду." });
-    } finally {
-      setIsAnalyzing(false);
-    }
   };
 
   return (
@@ -193,30 +171,7 @@ export default function CronGenerator() {
               onChange={(e) => updateCron("command", e.target.value)}
               className="text-base font-mono"
             />
-            <Button onClick={handleAnalyze} disabled={isAnalyzing} className="w-full sm:w-auto bg-accent hover:bg-accent/90">
-              {isAnalyzing ? <Loader2 className="animate-spin" /> : <BrainCircuit />}
-              <span>Анализировать (AI)</span>
-            </Button>
           </div>
-          {isAnalyzing && (
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Loader2 className="animate-spin h-4 w-4" />
-              <span>Анализ команды...</span>
-            </div>
-          )}
-          {analysis && (
-            <Card className={cn("transition-all", analysis.isValid ? "border-green-500/50" : "border-amber-500/50")}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 font-headline text-lg">
-                  {analysis.isValid ? <BadgeCheck className="text-green-500" /> : <BadgeAlert className="text-amber-500" />}
-                  Результат анализа
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="prose prose-sm dark:prose-invert max-w-none">
-                <p>{analysis.analysis}</p>
-              </CardContent>
-            </Card>
-          )}
         </CardContent>
       </Card>
 
