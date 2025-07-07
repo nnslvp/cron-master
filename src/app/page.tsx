@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CronGenerator from "@/components/cron/cron-generator";
 import Examples from "@/components/cron/examples";
@@ -7,6 +8,12 @@ import Faq from "@/components/cron/faq";
 import { Logo } from "@/components/logo";
 
 export default function Home() {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="py-8 px-4 sm:px-6 lg:px-8" itemScope itemType="https://schema.org/SoftwareApplication">
@@ -44,7 +51,7 @@ export default function Home() {
       </main>
        <footer className="py-6 px-4 sm:px-6 lg:px-8 text-center text-muted-foreground text-sm">
         <div className="max-w-7xl mx-auto">
-          <p>&copy; {new Date().getFullYear()} Крон Мастер. Все права защищены.</p>
+          {currentYear && <p>&copy; {currentYear} Крон Мастер. Все права защищены.</p>}
         </div>
       </footer>
     </div>
