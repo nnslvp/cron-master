@@ -15,11 +15,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  
-  verification: {
-    yandex: 'ВАШ_КОД_ВЕРИФИКАЦИИ_ЯНДЕКС',
-  },
-  
+    
   alternates: {
     canonical: '/',
   },
