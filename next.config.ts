@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   output: 'export',
-  trailingSlash: true,
   images: {
     remotePatterns: [
       {
